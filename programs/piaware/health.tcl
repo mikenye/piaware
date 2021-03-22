@@ -25,8 +25,18 @@ proc construct_health_array {_row} {
 
 	catch {
 		if {[::fa_sysinfo::route_to_flightaware gateway iface ip]} {
-			set row(local_ip) $ip
-			set row(local_iface) $iface
+
+			if {[piawareConfig get "override-site-info-host"]} {
+
+				set row(local_ip) [piawareConfig get "override-site-info-host"]
+				set row(local_iface) $iface
+
+			} else {
+
+				set row(local_ip) $ip
+				set row(local_iface) $iface
+
+			}
 		}
 	}
 
