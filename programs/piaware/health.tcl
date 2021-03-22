@@ -30,6 +30,13 @@ proc construct_health_array {_row} {
 			logger "piawareConfig get override-site-info-host: $osih"
 			logger "info exists: [info exists [piawareConfig get override-site-info-host]]"
 
+			if {{string trimleft "\n"} eq ""} {
+				logger "1"
+			} elseif {"\n" eq ""} {
+				logger "2"
+			}
+			logger "3"
+
 			if {$osih} {
 
 				logger "sending $osih"
