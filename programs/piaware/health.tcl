@@ -28,27 +28,19 @@ proc construct_health_array {_row} {
 
 			set osih [piawareConfig get override-site-info-host]
 			logger "piawareConfig get override-site-info-host: $osih"
-			logger "info exists: [info exists [piawareConfig get override-site-info-host]]"
 
-			if {{string trimleft $osih} eq ""} {
-				logger "1"
-			} elseif {$osih eq ""} {
-				logger "2"
-			}
-			logger "3"
+			if {$osih eq ""} {
+				
+				logger "sending $ip"
 
-			if {$osih} {
-
-				logger "sending $osih"
-
-				set row(local_ip) $osih
+				set row(local_ip) $ip
 				set row(local_iface) $iface
 
 			} else {
 
-				logger "sending $ip"
+				logger "sending $osih"
 
-				set row(local_ip) $ip
+				set row(local_ip) $osih
 				set row(local_iface) $iface
 
 			}
