@@ -28,6 +28,7 @@ proc construct_health_array {_row} {
 
 			set osih [piawareConfig get override-site-info-host]
 			logger "piawareConfig get override-site-info-host: $osih"
+			logger "info exists osih: [info exists osih]"
 
 			if {$osih} {
 
