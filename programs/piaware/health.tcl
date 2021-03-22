@@ -26,19 +26,17 @@ proc construct_health_array {_row} {
 	catch {
 		if {[::fa_sysinfo::route_to_flightaware gateway iface ip]} {
 
+			# get override-site-info-host
 			set osih [piawareConfig get override-site-info-host]
-			logger "piawareConfig get override-site-info-host: $osih"
 
+			# if override-site-info-host is not set, then send the ip as-per fa_sysinfo
 			if {$osih eq ""} {
 				
-				logger "sending $ip"
-
 				set row(local_ip) $ip
 				set row(local_iface) $iface
 
+			# if override-site-info-host is set, then send the contents of override-site-info-host
 			} else {
-
-				logger "sending $osih"
 
 				set row(local_ip) $osih
 				set row(local_iface) $iface
